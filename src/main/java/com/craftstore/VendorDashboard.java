@@ -72,6 +72,7 @@ public class VendorDashboard extends JFrame {
             for (Window w : Window.getWindows()) {
                 w.dispose();
             }
+
             new LoginForm().setVisible(true);
         });
 

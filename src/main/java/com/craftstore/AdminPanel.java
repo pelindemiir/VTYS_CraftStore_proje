@@ -12,32 +12,24 @@ import java.awt.*;
  */
 public class AdminPanel extends JFrame {
 
-    // Soft renkler
-    // =================== ANA YAPI (AYNI) ===================
+    // ================== TEMA ==================
 
     // Header: koyu antrasit (mor alt tonlu)
     private static final Color HEADER_COLOR = new Color(58, 56, 70);
 
-    // Tek vurgu rengi: soft mor (tüm butonlar)
+    // Tek vurgu rengi: soft mor
     private static final Color BTN_PRIMARY  = new Color(132, 115, 190);
 
-    // Success = Primary (bilerek aynı, sade tasarım)
+    // Aynı tonlar (sade tasarım)
     private static final Color BTN_SUCCESS  = BTN_PRIMARY;
-
-    // Warning: morun açık tonu (yeni renk DEĞİL)
     private static final Color BTN_WARNING  = new Color(190, 175, 225);
-
-    // Danger: morun koyu tonu (yeni renk DEĞİL)
     private static final Color BTN_DANGER   = new Color(108, 90, 165);
 
-    // Arka plan: çok açık, nötr
+    // Arka plan
     private static final Color BG_COLOR     = new Color(247, 247, 251);
-
-
 
     public AdminPanel() {
 
-        // Pencere ayarları
         setTitle("CraftStore - Admin Paneli");
         setSize(900, 500);
         setLocationRelativeTo(null);
@@ -92,20 +84,31 @@ public class AdminPanel extends JFrame {
         add(center, BorderLayout.CENTER);
 
         // ================= EVENTLER =================
-        btnProducts.addActionListener(e -> new ProductManagementPanel().setVisible(true));
-        btnCustomers.addActionListener(e -> new CustomerManagementPanel().setVisible(true));
-        btnOrders.addActionListener(e -> new OrderManagementPanel().setVisible(true));
-        btnReports.addActionListener(e -> new ReportsPanel().setVisible(true));
-        btnVendors.addActionListener(e -> new VendorManagementPanel().setVisible(true));
+        btnProducts.addActionListener(e ->
+                new ProductManagementPanel().setVisible(true));
 
-        // Çıkış → LoginForm
+        btnCustomers.addActionListener(e ->
+                new CustomerManagementPanel().setVisible(true));
+
+        btnOrders.addActionListener(e ->
+                new OrderManagementPanel().setVisible(true));
+
+        btnReports.addActionListener(e ->
+                new ReportsPanel().setVisible(true));
+
+        btnVendors.addActionListener(e ->
+                new VendorManagementPanel().setVisible(true));
+
+        // ✅ DOĞRU LOGOUT (TÜM PENCERELERİ KAPATIR)
         btnLogout.addActionListener(e -> {
-            dispose();
+            for (Window w : Window.getWindows()) {
+                w.dispose();
+            }
             new LoginForm().setVisible(true);
         });
     }
 
-    // Tekrarlayan buton kodları tek metoda alındı
+    // ================= BUTON FABRİKASI =================
     private JButton createButton(String text, Color color) {
         JButton btn = new JButton(text);
         btn.setBackground(color);
