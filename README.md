@@ -29,5 +29,5 @@ Java tabanlı bir masaüstü uygulamasını birlikte içermektedir.
 
 ---
 
-## 📂 Proje Klasör Yapısı
+
 
